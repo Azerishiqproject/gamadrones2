@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // --- Internal Sub-Component: IsometricLayer ---
@@ -216,6 +216,14 @@ const IsometricLayer: React.FC<IsometricLayerProps> = ({ zIndex, yOffset, isActi
 // --- Main Component ---
 export default function DroneEcosystem() {
   const [hoveredLayer, setHoveredLayer] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const layers = [
     {
@@ -228,7 +236,6 @@ export default function DroneEcosystem() {
       color: "from-blue-500/5 to-blue-600/15",
       accent: "bg-blue-600",
       type: "ui" as const,
-      tags: ["4K Telemetry", "Multi-Pilot", "AR Engine"]
     },
     {
       id: 2,
@@ -240,19 +247,17 @@ export default function DroneEcosystem() {
       color: "from-indigo-500/5 to-indigo-600/15",
       accent: "bg-indigo-500",
       type: "circuit" as const,
-      tags: ["Dynamic Path", "Search AI", "CV Patrol"]
     },
     {
       id: 3,
-      title: "SkyCore Firmware",
-      subtitle: "Hardware Abstraction Layer",
-      description: "Industrial RTOS optimized for FOC motor control, 256-bit AES encryption, and high-frequency sensor fusion.",
+      title: "System Status",
+      subtitle: "Secure & Reliable",
+      description: "All our systems are managed with autonomous enhancements, ensuring guaranteed security. Gama is committed to secure and reliable service.",
       side: "right",
       yPos: 170,
       color: "from-slate-400/5 to-slate-600/15",
       accent: "bg-slate-500",
       type: "base" as const,
-      tags: ["RTOS v4", "Secure Link", "Sensor Fusion"]
     }
   ];
 
@@ -263,21 +268,16 @@ export default function DroneEcosystem() {
         style={{ backgroundImage: 'radial-gradient(#000 1.2px, transparent 1.2px)', backgroundSize: '40px 40px' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-blue-100/40 to-indigo-100/40 rounded-full blur-[140px] -z-10" />
 
-
-
-      <main className="flex-1 flex items-center justify-center relative px-6 py-32">
-        <div className="relative w-full max-w-7xl flex items-center justify-center">
-
-          {/* Central Vertical Connectivity Line */}
-          <div className="absolute top-[10%] bottom-[10%] w-[1.5px] bg-gradient-to-b from-transparent via-slate-200 to-transparent z-0 opacity-60" />
+      <main className="flex-1 flex flex-col items-center justify-center relative px-4 md:px-6 py-12 md:py-32">
+        <div className="relative w-full max-w-7xl flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-0">
 
           {/* Isometric Stack Component */}
-          <div className="relative isometric-container w-[550px] h-[600px] flex items-center justify-center">
+          <div className="relative isometric-container w-full max-w-[320px] md:max-w-[550px] aspect-square flex items-center justify-center lg:order-2">
             {layers.map((layer) => (
               <IsometricLayer
                 key={layer.id}
                 zIndex={60 - (layer.id * 10)}
-                yOffset={layer.yPos}
+                yOffset={isMobile ? layer.yPos * 0.6 : layer.yPos}
                 isActive={hoveredLayer === layer.id}
                 isDimmed={hoveredLayer !== null && hoveredLayer !== layer.id}
                 color={layer.color}
@@ -287,47 +287,45 @@ export default function DroneEcosystem() {
           </div>
 
           {/* Sidebar Annotation Blocks */}
-          {layers.map((layer) => (
-            <motion.div
-              key={`info-${layer.id}`}
-              onMouseEnter={() => setHoveredLayer(layer.id)}
-              onMouseLeave={() => setHoveredLayer(null)}
-              initial={{ opacity: 0, x: layer.side === 'left' ? -50 : 50 }}
-              animate={{
-                opacity: hoveredLayer === null || hoveredLayer === layer.id ? 1 : 0.08,
-                x: 0,
-                y: layer.yPos - 70,
-                scale: hoveredLayer === layer.id ? 1.05 : 1
-              }}
-              transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-              className={`absolute w-[320px] z-30 group cursor-default transition-all duration-500 ${layer.side === 'left' ? 'text-right right-[calc(50%+260px)]' : 'text-left left-[calc(50%+260px)]'}`}
-            >
-              <div className={`flex flex-col ${layer.side === 'left' ? 'items-end' : 'items-start'}`}>
-                <div className="flex items-center gap-4 mb-4">
-                  {layer.side === 'right' && <div className={`w-1 h-7 ${layer.accent} rounded-full shadow-lg shadow-blue-200`} />}
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-black text-slate-400 tracking-[0.2em] uppercase">Architecture Layer 0{layer.id}</span>
-                    <h3 className="text-3xl font-black text-slate-900 leading-tight group-hover:text-blue-600 transition-colors">
-                      {layer.title}
-                    </h3>
+          <div className="flex flex-col gap-8 w-full lg:contents lg:order-1">
+            {layers.map((layer) => (
+              <motion.div
+                key={`info-${layer.id}`}
+                onMouseEnter={() => setHoveredLayer(layer.id)}
+                onMouseLeave={() => setHoveredLayer(null)}
+                onClick={() => setHoveredLayer(hoveredLayer === layer.id ? null : layer.id)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{
+                  opacity: hoveredLayer === null || hoveredLayer === layer.id ? 1 : 0.4,
+                  y: isMobile ? 0 : layer.yPos + 70,
+                  scale: hoveredLayer === layer.id ? 1.05 : 1
+                }}
+                className={`lg:absolute w-full lg:w-[320px] z-30 group cursor-default transition-all duration-500 lg:-translate-y-1/2 
+                  ${layer.side === 'left'
+                    ? 'lg:text-right lg:right-[calc(50%+260px)]'
+                    : 'lg:text-left lg:left-[calc(50%+260px)]'
+                  }
+                  ${hoveredLayer === layer.id ? 'bg-slate-50 lg:bg-transparent p-6 rounded-2xl lg:p-0' : ''}
+                `}
+              >
+                <div className={`flex flex-col ${layer.side === 'left' ? 'lg:items-end' : 'lg:items-start'}`}>
+                  <div className={`flex items-center gap-4 mb-3 md:mb-4 ${layer.side === 'left' ? 'lg:flex-row-reverse' : ''}`}>
+                    <div className={`w-1 h-6 md:h-7 ${layer.accent} rounded-full shadow-lg`} />
+                    <div className="flex flex-col">
+                      <span className="text-[9px] md:text-[10px] font-black text-slate-400 tracking-[0.2em] uppercase">Architecture Layer 0{layer.id}</span>
+                      <h3 className="text-xl md:text-3xl font-black text-slate-900 leading-tight group-hover:text-blue-600 transition-colors">
+                        {layer.title}
+                      </h3>
+                    </div>
                   </div>
-                  {layer.side === 'left' && <div className={`w-1 h-7 ${layer.accent} rounded-full shadow-lg shadow-indigo-200`} />}
-                </div>
 
-                <p className="text-slate-500 text-[13px] leading-relaxed mb-6 font-medium max-w-[280px]">
-                  {layer.description}
-                </p>
-
-                <div className={`flex flex-wrap gap-2 ${layer.side === 'left' ? 'justify-end' : 'justify-start'}`}>
-                  {layer.tags.map(tag => (
-                    <span key={tag} className="px-2.5 py-1 rounded-lg bg-white border border-slate-100 shadow-sm text-slate-600 text-[10px] font-bold uppercase tracking-tight">
-                      {tag}
-                    </span>
-                  ))}
+                  <p className="text-slate-500 text-[12px] md:text-[13px] leading-relaxed font-medium lg:max-w-[280px]">
+                    {layer.description}
+                  </p>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </main>
 

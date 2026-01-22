@@ -1,17 +1,20 @@
+'use client';
+
+import React, { useState } from 'react';
 import Navbar from "@/components/Navbar";
-import Partners from "@/components/Partners";
 import TextSection from "@/components/TextSection";
 import ProcessSection from "@/components/ProcessSection";
-import EngineeringSection from "@/components/EngineeringSection";
 import DroneEcosystem from "@/components/DroneEcosystem";
 import WhyWeWin from "@/components/WhyWeWin";
 import DeliveryService from "@/components/DeliveryService";
 import InnovationSection from "@/components/InnovationSection";
 import ImageSection from "@/components/ImageSection";
 import Footer from "@/components/Footer";
-import Image from "next/image";
+import UnderDevelopmentModal from "@/components/UnderDevelopmentModal";
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -37,8 +40,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Partners Section */}
-      <Partners />
 
       {/* Text Section */}
       <TextSection />
@@ -47,7 +48,6 @@ export default function Home() {
       <ProcessSection />
 
       {/* Engineering Partner Section */}
-      <EngineeringSection />
 
       {/* Drone Ecosystem Section */}
       <DroneEcosystem />
@@ -65,7 +65,12 @@ export default function Home() {
       <ImageSection />
 
       {/* Footer */}
-      <Footer />
+      <Footer onUnderDevelopment={() => setIsModalOpen(true)} />
+
+      {/* Global Under Development Modal */}
+      <div className="fixed z-[1000]">
+        <UnderDevelopmentModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      </div>
     </div>
   );
 }
