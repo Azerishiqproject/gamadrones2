@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,12 +25,14 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-center px-6 relative z-[60]">
         {/* Logo */}
         <div className="flex items-center">
-          <img
-            src="/gama-logo.png"
-            alt="GAMA Logo"
-            className={`transition-all duration-500 ${scrolled ? 'h-8 md:h-12' : 'h-11 md:h-18'
-              } w-auto`}
-          />
+          <Link href="/">
+            <img
+              src="/gama-logo.png"
+              alt="GAMA Logo"
+              className={`transition-all duration-500 ${scrolled ? 'h-8 md:h-12' : 'h-11 md:h-18'
+                } w-auto`}
+            />
+          </Link>
         </div>
       </div>
     </nav>

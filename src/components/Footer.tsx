@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 const footerLinks = {
     explore: [
         { name: 'Home', href: '/' },
+        { name: 'Wishlist', href: '/wishlist' },
         { name: 'Why Gama', href: '#' },
         { name: 'Specs', href: '#' },
         { name: 'Wiki', href: '#' },
