@@ -5,8 +5,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import UnderDevelopmentModal from "@/components/UnderDevelopmentModal";
 import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/store/store';
+import { submitWishlist, resetSubmitState } from '@/store/wishlistSlice';
 
 export default function WishlistFormPage() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading, success, error } = useSelector((state: RootState) => state.wishlist);
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -21,17 +27,13 @@ export default function WishlistFormPage() {
     message: ''
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setTimeout(() => {
-      setIsSubmitted(true);
-    }, 800);
+    dispatch(submitWishlist(formData));
   };
 
   return (
@@ -76,8 +78,20 @@ export default function WishlistFormPage() {
 
         {/* Right Side: The Form - Matches layout, labels, and sizing exactly */}
         <div className="w-full lg:w-7/12 max-w-[640px] lg:max-w-none pt-8">
-          <div className="w-full bg-white rounded-xl p-8 shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-gray-100">
-            {isSubmitted ? (
+          <div className="w-full bg-white rounded-xl p-8 shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-gray-100 relative">
+            {error && (
+               <div className="mb-4 p-3 bg-red-50 text-red-600 rounded text-sm text-center font-medium">
+                 {error}
+               </div>
+            )}
+            
+            {loading && (
+              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm z-20 flex items-center justify-center rounded-xl">
+                 <div className="w-8 h-8 border-4 border-black border-t-transparent rounded-full animate-spin" />
+              </div>
+            )}
+
+            {success ? (
               <div className="py-16 flex flex-col items-center text-center animate-in fade-in zoom-in duration-500">
                 <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-5">
                   <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,7 +103,13 @@ export default function WishlistFormPage() {
                   Thank you for your interest. A member of our team will contact you soon.
                 </p>
                 <button
-                  onClick={() => setIsSubmitted(false)}
+                  onClick={() => {
+                    dispatch(resetSubmitState());
+                    setFormData({
+                      firstName: '', lastName: '', jobTitle: '', companyName: '',
+                      email: '', phone: '', industry: '', region: '', interest: '', message: ''
+                    });
+                  }}
                   className="bg-[#2A2A2A] text-white px-6 py-3 rounded text-[13px] font-bold hover:bg-black transition-colors"
                 >
                   Submit another request
