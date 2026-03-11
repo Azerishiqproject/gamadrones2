@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
-export interface WishlistData {
+export interface WaitlistData {
   firstName: string;
   lastName: string;
   jobTitle: string;
@@ -15,23 +15,23 @@ export interface WishlistData {
   message: string;
 }
 
-interface WishlistState {
+interface WaitlistState {
   loading: boolean;
   success: boolean;
   error: string | null;
 }
 
-const initialState: WishlistState = {
+const initialState: WaitlistState = {
   loading: false,
   success: false,
   error: null,
 };
 
-export const submitWishlist = createAsyncThunk(
-  'wishlist/submit',
-  async (data: WishlistData, { rejectWithValue }) => {
+export const submitWaitlist = createAsyncThunk(
+  'waitlist/submit',
+  async (data: WaitlistData, { rejectWithValue }) => {
     try {
-      const docRef = await addDoc(collection(db, 'wishlists'), {
+      const docRef = await addDoc(collection(db, 'waitlists'), {
         ...data,
         createdAt: serverTimestamp(),
       });
@@ -42,8 +42,8 @@ export const submitWishlist = createAsyncThunk(
   }
 );
 
-const wishlistSlice = createSlice({
-  name: 'wishlist',
+const waitlistSlice = createSlice({
+  name: 'waitlist',
   initialState,
   reducers: {
     resetSubmitState: (state) => {
@@ -54,21 +54,21 @@ const wishlistSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(submitWishlist.pending, (state) => {
+      .addCase(submitWaitlist.pending, (state) => {
         state.loading = true;
         state.error = null;
         state.success = false;
       })
-      .addCase(submitWishlist.fulfilled, (state) => {
+      .addCase(submitWaitlist.fulfilled, (state) => {
         state.loading = false;
         state.success = true;
       })
-      .addCase(submitWishlist.rejected, (state, action) => {
+      .addCase(submitWaitlist.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });
   },
 });
 
-export const { resetSubmitState } = wishlistSlice.actions;
-export default wishlistSlice.reducer;
+export const { resetSubmitState } = waitlistSlice.actions;
+export default waitlistSlice.reducer;

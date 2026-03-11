@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import wishlistReducer from './wishlistSlice';
-import adminWishlistReducer from './adminWishlistSlice';
+import waitlistReducer from './waitlistSlice';
+import adminWaitlistReducer from './adminWaitlistSlice';
 
 export const store = configureStore({
   reducer: {
-    wishlist: wishlistReducer,
-    adminWishlist: adminWishlistReducer,
+    waitlist: waitlistReducer,
+    adminWaitlist: adminWaitlistReducer,
   },
 });
 

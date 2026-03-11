@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
-export interface WishlistData {
+export interface WaitlistData {
   id?: string;
   firstName: string;
   lastName: string;
@@ -17,61 +17,61 @@ export interface WishlistData {
   createdAt?: any;
 }
 
-interface AdminWishlistState {
-  data: WishlistData[];
+interface AdminWaitlistState {
+  data: WaitlistData[];
   loading: boolean;
   error: string | null;
 }
 
-const initialState: AdminWishlistState = {
+const initialState: AdminWaitlistState = {
   data: [],
   loading: false,
   error: null,
 };
 
-export const fetchWishlists = createAsyncThunk(
-  'adminWishlist/fetch',
+export const fetchWaitlists = createAsyncThunk(
+  'adminWaitlist/fetch',
   async (_, { rejectWithValue }) => {
     try {
-      const q = query(collection(db, 'wishlists'), orderBy('createdAt', 'desc'));
+      const q = query(collection(db, 'waitlists'), orderBy('createdAt', 'desc'));
       const querySnapshot = await getDocs(q);
       
-      const wishlists: WishlistData[] = [];
+      const waitlists: WaitlistData[] = [];
       querySnapshot.forEach((doc) => {
         const docData = doc.data();
-        wishlists.push({
+        waitlists.push({
           id: doc.id,
           ...docData,
           createdAt: docData.createdAt ? docData.createdAt.toDate().toISOString() : null
-        } as WishlistData);
+        } as WaitlistData);
       });
       
-      return wishlists;
+      return waitlists;
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
   }
 );
 
-const adminWishlistSlice = createSlice({
-  name: 'adminWishlist',
+const adminWaitlistSlice = createSlice({
+  name: 'adminWaitlist',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchWishlists.pending, (state) => {
+      .addCase(fetchWaitlists.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchWishlists.fulfilled, (state, action) => {
+      .addCase(fetchWaitlists.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
       })
-      .addCase(fetchWishlists.rejected, (state, action) => {
+      .addCase(fetchWaitlists.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });
   },
 });
 
-export default adminWishlistSlice.reducer;
+export default adminWaitlistSlice.reducer;

@@ -7,11 +7,11 @@ import UnderDevelopmentModal from "@/components/UnderDevelopmentModal";
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
-import { submitWishlist, resetSubmitState } from '@/store/wishlistSlice';
+import { submitWaitlist, resetSubmitState } from '@/store/waitlistSlice';
 
-export default function WishlistFormPage() {
+export default function WaitlistFormPage() {
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, success, error } = useSelector((state: RootState) => state.wishlist);
+  const { loading, success, error } = useSelector((state: RootState) => state.waitlist);
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -33,7 +33,7 @@ export default function WishlistFormPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(submitWishlist(formData));
+    dispatch(submitWaitlist(formData));
   };
 
   return (
