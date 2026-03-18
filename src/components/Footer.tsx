@@ -8,13 +8,10 @@ const footerLinks = {
         { name: 'Home', href: '/' },
         { name: 'Waitlist', href: '/waitlist' },
         { name: 'Why Gama', href: '#' },
-        { name: 'Specs', href: '#' },
-        { name: 'Wiki', href: '#' },
-        { name: 'Safety', href: '#' },
     ],
     company: [
         { name: 'Culture', href: '#' },
-        { name: 'Career', href: '#' },
+        { name: 'Career', href: '/careers' },
         { name: 'Services', href: '#' },
         { name: 'Gallery', href: '#' },
     ]

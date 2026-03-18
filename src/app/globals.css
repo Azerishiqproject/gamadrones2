@@ -24,3 +24,76 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom HTML Support for Job Descriptions */
+.html-content {
+  line-height: 1.7;
+  color: #475513; /* fallback color, but usually overridden by tailwind */
+}
+
+/* Fix for unintended spacing when HTML contains newlines */
+.html-content br {
+  display: block;
+  content: "";
+  margin-top: 0.5rem;
+}
+
+.html-content p {
+  margin-bottom: 1.25rem;
+}
+
+.html-content b, 
+.html-content strong {
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.html-content i, 
+.html-content em {
+  font-style: italic;
+}
+
+/* Premium List Styling matching the site aesthetic */
+.html-content ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.html-content li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.html-content li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 6px;
+  height: 6px;
+  background-color: #3b82f6; /* blue-500 */
+  border-radius: 50%;
+}
+
+.html-content h1, 
+.html-content h2, 
+.html-content h3 {
+  font-weight: 900;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.html-content h1:first-child,
+.html-content h2:first-child,
+.html-content h3:first-child {
+  margin-top: 0;
+}
+
+.html-content h1 { font-size: 1.75rem; }
+.html-content h2 { font-size: 1.5rem; }
+.html-content h3 { font-size: 1.25rem; }
