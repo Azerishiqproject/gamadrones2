@@ -23,7 +23,7 @@ export default function BrandPage() {
       <div className="mx-auto min-h-screen max-w-[1728px]">
         <section className="relative min-h-[240px] overflow-hidden md:min-h-[320px] lg:min-h-[420px]">
           <Image
-            src="/hero_bg.png"
+            src="/hero_bg_brand.png"
             alt="GAMA Drones brand hero"
             fill
             priority
@@ -33,7 +33,7 @@ export default function BrandPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/12 via-transparent to-black/16" />
 
           <div className="absolute left-0 top-0 z-10 flex w-full items-start justify-between p-8 md:p-10 lg:p-14">
-            <div className="relative h-10 w-14 md:h-10 md:w-16 lg:h-12 lg:w-20">
+            <div className="relative h-12 w-16 md:h-14 md:w-20 lg:h-16 lg:w-28">
               <Image
                 src="/gama-logo.png"
                 alt="GAMA"
@@ -60,7 +60,7 @@ export default function BrandPage() {
               our words and visuals elevate us in the eyes of our customers, our
               partners, and the world.
             </p>
-            <p className="mt-8 text-[0.8rem] font-medium md:mt-10 md:text-[1rem]">
+            <p className="mt-8 text-[0.8rem] font-semibold leading-[1.2] tracking-[-0.02em]md:mt-10 md:text-[1rem]">
               See how we present ourselves
             </p>
           </div>
@@ -113,14 +113,19 @@ export default function BrandPage() {
 
             <a
               href="mailto:brand@gamadrones.com"
-              className="mt-2 inline-block text-[0.8rem] font-black leading-none tracking-[-0.04em] text-white hover:opacity-80 md:text-[0.98rem] lg:text-[1.1rem]"
+              className="mt-2 block text-[0.8rem] font-black leading-none tracking-[-0.04em] text-white hover:opacity-80 md:text-[0.98rem] lg:text-[1.1rem]"
             >
               brand@gamadrones.com
             </a>
 
-           
+            <a
+              href="#top"
+              className="mt-12 underline block text-[0.8rem] font-black leading-none tracking-[-0.04em] text-white/60 hover:text-white transition-colors md:text-[0.98rem] lg:text-[1.1rem]"
+            >
+              Back to top
+            </a>
 
-            <p className="mt-10 text-sm font-medium text-white/70 md:text-base">
+            <p className="mt-8 text-sm font-medium text-white/70 md:text-base">
               © {currentYear} GAMA Drones
             </p>
           </div>
