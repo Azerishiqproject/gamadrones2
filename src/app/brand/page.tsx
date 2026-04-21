@@ -45,7 +45,7 @@ export default function BrandPage() {
           </div>
 
           <div className="absolute inset-x-0 bottom-0 z-10 px-8 pb-8 md:px-10 md:pb-10 lg:px-14 lg:pb-14">
-            <h1 className="max-w-4xl text-[2.35rem] font-black leading-[0.95] tracking-[-0.04em] text-white md:text-[3.4rem] lg:text-[4.6rem]">
+            <h1 className="max-w-4xl text-[1.8rem] font-black leading-[0.95] tracking-[-0.04em] text-white md:text-[3.4rem] lg:text-[4.6rem]">
               Brand Guidelines
             </h1>
           </div>
@@ -53,14 +53,14 @@ export default function BrandPage() {
 
         <section className="px-8 py-8 md:px-10 md:py-10 lg:px-14 lg:py-12">
           <div className="max-w-[760px]">
-            <p className="text-[0.88rem] font-semibold leading-[1.2] tracking-[-0.02em] md:text-[1rem] lg:text-[1.15rem]">
+            <p className="text-[0.78rem] font-semibold leading-[1.2] tracking-[-0.02em] md:text-[1rem] lg:text-[1.15rem]">
               At Gama Drones, our business is about how we move goods. Our
               brand is about how we move people. How we communicate in ways that
               are as efficient and delightful as our delivery experience. How
               our words and visuals elevate us in the eyes of our customers, our
               partners, and the world.
             </p>
-            <p className="mt-8 text-[0.95rem] font-medium md:mt-10 md:text-[1rem]">
+            <p className="mt-8 text-[0.8rem] font-medium md:mt-10 md:text-[1rem]">
               See how we present ourselves
             </p>
           </div>
@@ -77,7 +77,7 @@ export default function BrandPage() {
                 <a
                   key={section}
                   href={`#${section.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                  className="block text-[1.9rem] font-black leading-[0.98] tracking-[-0.05em] transition-all duration-200 hover:translate-x-1 hover:opacity-65 md:text-[2.7rem] lg:text-[3.5rem]"
+                  className="block text-[1.4rem] font-black leading-[0.98] tracking-[-0.05em] transition-all duration-200 hover:translate-x-1 hover:opacity-65 md:text-[2.7rem] lg:text-[3.5rem]"
                 >
                   {section}
                 </a>
@@ -91,7 +91,7 @@ export default function BrandPage() {
             </div>
             <a
               href="#brand-positioning"
-              className="mt-10 inline-block text-[1.9rem] font-black leading-[0.98] tracking-[-0.05em] transition-all duration-200 hover:translate-x-1 hover:opacity-65 md:mt-12 md:text-[2.4rem] lg:text-[3rem]"
+              className="mt-10 inline-block text-[1.4rem] font-black leading-[0.98] tracking-[-0.05em] transition-all duration-200 hover:translate-x-1 hover:opacity-65 md:mt-12 md:text-[2.4rem] lg:text-[3rem]"
             >
               Brand Positioning
             </a>
@@ -100,20 +100,20 @@ export default function BrandPage() {
 
         <footer className="bg-[#617b8f] px-8 py-12 text-white md:px-10 md:py-16 lg:px-14 lg:py-20">
           <div className="max-w-[980px]">
-            <p className="max-w-[860px] text-[0.88rem] font-semibold leading-[1.2] tracking-[-0.02em] md:text-[0.98rem] lg:text-[1.1rem]">
+            <p className="max-w-[860px] text-[0.78rem] font-semibold leading-[1.2] tracking-[-0.02em] md:text-[0.98rem] lg:text-[1.1rem]">
               These guidelines were created by Gama Design, the team
               responsible for ensuring consistent and cohesive use of our brand
               elements.
             </p>
 
-            <p className="mt-10 max-w-[840px] text-[0.88rem] font-semibold leading-[1.2] tracking-[-0.02em] md:mt-12 md:text-[0.98rem] lg:text-[1.1rem]">
+            <p className="mt-10 max-w-[840px] text-[0.78rem] font-semibold leading-[1.2] tracking-[-0.02em] md:mt-12 md:text-[0.98rem] lg:text-[1.1rem]">
               If you have questions about using these guidelines, please
               contact:
             </p>
 
             <a
               href="mailto:brand@gamadrones.com"
-              className="mt-2 inline-block text-[0.88rem] font-black leading-none tracking-[-0.04em] text-white hover:opacity-80 md:text-[0.98rem] lg:text-[1.1rem]"
+              className="mt-2 inline-block text-[0.8rem] font-black leading-none tracking-[-0.04em] text-white hover:opacity-80 md:text-[0.98rem] lg:text-[1.1rem]"
             >
               brand@gamadrones.com
             </a>
