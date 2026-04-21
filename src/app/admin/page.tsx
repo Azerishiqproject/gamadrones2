@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
 import { fetchWaitlists, WaitlistData } from '@/store/adminWaitlistSlice';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { auth, db } from '@/lib/firebase';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useAuth } from '@/context/AuthContext';
@@ -18,7 +17,7 @@ interface Job {
   type: string;
   description: string;
   requirements: string[];
-  createdAt: any;
+  createdAt?: Timestamp | null;
 }
 
 interface Application {
@@ -32,11 +31,10 @@ interface Application {
   fileName: string;
   fileType: string;
   status: string;
-  createdAt: any;
+  createdAt?: Timestamp | null;
 }
 
 export default function AdminDashboardPage() {
-  const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const { data: waitlistData, loading: waitlistLoading, error: waitlistError } = useSelector((state: RootState) => state.adminWaitlist);
   const { user, loading: authLoading } = useAuth();
@@ -147,8 +145,9 @@ export default function AdminDashboardPage() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-    } catch (err: any) {
-      setAuthError(err.message || 'Invalid credentials');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Invalid credentials';
+      setAuthError(message);
     }
   };
 

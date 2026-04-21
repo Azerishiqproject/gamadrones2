@@ -36,8 +36,9 @@ export const submitWaitlist = createAsyncThunk(
         createdAt: serverTimestamp(),
       });
       return docRef.id;
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      return rejectWithValue(message);
     }
   }
 );

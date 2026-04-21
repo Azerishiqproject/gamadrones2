@@ -279,11 +279,11 @@ export default function CareersPage() {
                 Building for the <br />
                 <span className="text-slate-400 font-medium italic">unmapped frontier.</span>
               </h2>
-            </div>
-            <p className="text-lg text-slate-500 leading-relaxed max-w-lg pb-2">
-              We aren't just scaling technology; we are defining a new category of autonomous infrastructure. At GAMA, you'll solve problems that don't yet have an answer key.
-            </p>
-          </div>
+	            </div>
+	            <p className="text-lg text-slate-500 leading-relaxed max-w-lg pb-2">
+	              We aren&apos;t just scaling technology; we are defining a new category of autonomous infrastructure. At GAMA, you&apos;ll solve problems that don&apos;t yet have an answer key.
+	            </p>
+	          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[

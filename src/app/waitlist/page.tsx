@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import UnderDevelopmentModal from "@/components/UnderDevelopmentModal";
-import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
 import { submitWaitlist, resetSubmitState } from '@/store/waitlistSlice';
@@ -242,7 +241,7 @@ export default function WaitlistFormPage() {
 
                 {/* Interest Dropdown */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[12px] font-bold text-[#111111]">Tell us more about why you're interested in Gama.<span className="text-red-500 ml-0.5">*</span></label>
+                  <label className="text-[12px] font-bold text-[#111111]">Tell us more about why you&apos;re interested in Gama.<span className="text-red-500 ml-0.5">*</span></label>
                   <div className="relative">
                     <select
                       name="interest"

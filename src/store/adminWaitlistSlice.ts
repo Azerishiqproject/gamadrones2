@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '@/lib/firebase';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
 
 export interface WaitlistData {
   id?: string;
@@ -14,7 +14,7 @@ export interface WaitlistData {
   region: string;
   interest: string;
   message: string;
-  createdAt?: any;
+  createdAt?: string | null;
 }
 
 interface AdminWaitlistState {
@@ -38,17 +38,20 @@ export const fetchWaitlists = createAsyncThunk(
       
       const waitlists: WaitlistData[] = [];
       querySnapshot.forEach((doc) => {
-        const docData = doc.data();
+        const docData = doc.data() as Omit<WaitlistData, 'id' | 'createdAt'> & {
+          createdAt?: Timestamp;
+        };
         waitlists.push({
           id: doc.id,
           ...docData,
-          createdAt: docData.createdAt ? docData.createdAt.toDate().toISOString() : null
-        } as WaitlistData);
+          createdAt: docData.createdAt ? docData.createdAt.toDate().toISOString() : null,
+        });
       });
       
       return waitlists;
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      return rejectWithValue(message);
     }
   }
 );
