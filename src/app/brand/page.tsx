@@ -38,7 +38,7 @@ export default function BrandPage() {
                 src="/gama-logo.png"
                 alt="GAMA"
                 fill
-                sizes="160px"
+                sizes="260px"
                 className="object-contain brightness-0 invert"
               />
             </div>
