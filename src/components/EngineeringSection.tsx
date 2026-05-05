@@ -19,7 +19,7 @@ export default function EngineeringSection() {
         <div className="flex-1 flex items-center justify-center">
           <div className="w-full max-w-md">
             <Image
-              src="/icon/tmotor.webp"
+              src="/icons/tmotor.webp"
               alt="T-Motor engineering partner"
               width={500}
               height={400}

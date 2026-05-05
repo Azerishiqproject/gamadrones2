@@ -26,7 +26,7 @@ export default function Footer({ onUnderDevelopment }: { onUnderDevelopment: () 
                     {/* Brand Column */}
                     <div className="lg:col-span-2 space-y-8">
                         <Link href="/" className="flex items-center gap-2">
-                            <img src="/gama-logo.png" alt="GAMA Logo" className="h-12 w-auto" />
+                            <img src="/logos/gama-logo.png" alt="GAMA Logo" className="h-12 w-auto" />
                         </Link>
                         <p className="text-slate-500 text-sm leading-relaxed max-w-xs">
                             Defining the future of autonomous aerial logistics. Building sustainable, safe, and intelligent sky networks for the next generation of delivery.

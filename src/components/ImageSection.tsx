@@ -5,7 +5,7 @@ export default function ImageSection() {
     <section className="w-full relative">
       <div className="relative w-full h-auto overflow-hidden">
         <Image
-          src="/component-bg3.png"
+          src="/components/component-bg3.png"
           alt="Background image"
           width={1920}
           height={1080}
@@ -17,7 +17,7 @@ export default function ImageSection() {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="relative w-full h-full">
             <Image
-              src="/component-image1.png"
+              src="/components/component-image1.png"
               alt="Drone visualization"
               fill
               className="object-contain"

@@ -21,7 +21,7 @@ export default function Home() {
       <section
         className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url(/hero_bg.png)',
+          backgroundImage: 'url(/heroes/hero_bg.png)',
         }}
       >
         {/* Navbar - positioned absolutely over hero */}

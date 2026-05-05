@@ -5,7 +5,7 @@ export default function InnovationSection() {
     <section className="w-full bg-gray-50 py-40 px-0">
       <div className="relative w-full h-[900px] overflow-hidden">
         <Image
-          src="/component-bg2.png"
+          src="/components/component-bg2.png"
           alt="Innovation background"
           fill
           className="object-cover w-full h-full"

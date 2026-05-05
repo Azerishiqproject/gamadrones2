@@ -239,7 +239,7 @@ export default function AdminDashboardPage() {
             <Link href="/" className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-black transition-colors" title="Back to Home">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
             </Link>
-            <img src="/gama-logo.png" alt="GAMA" className="h-10 md:h-12 w-auto" />
+            <img src="/logos/gama-logo.png" alt="GAMA" className="h-10 md:h-12 w-auto" />
           </div>
 
           <div className="w-full mb-8 text-center text-left">
@@ -305,7 +305,7 @@ export default function AdminDashboardPage() {
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" /></svg>
             </button>
-            <img src="/gama-logo.png" alt="GAMA" className="h-7 md:h-8 w-auto" />
+            <img src="/logos/gama-logo.png" alt="GAMA" className="h-7 md:h-8 w-auto" />
             <span className="hidden xs:inline-block text-[10px] md:text-sm font-bold bg-slate-100 text-slate-600 px-2 md:px-3 py-1 rounded-full uppercase tracking-wider">
               Control Panel
             </span>
@@ -349,7 +349,7 @@ export default function AdminDashboardPage() {
         `}>
           <div className="p-6 lg:p-0">
             <div className="lg:hidden flex items-center justify-between mb-8">
-              <img src="/gama-logo.png" alt="GAMA" className="h-6 w-auto" />
+              <img src="/logos/gama-logo.png" alt="GAMA" className="h-6 w-auto" />
               <button 
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-2 text-slate-400"

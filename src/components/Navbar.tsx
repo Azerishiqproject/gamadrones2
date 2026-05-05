@@ -27,7 +27,7 @@ export default function Navbar() {
         <div className="flex items-center">
           <Link href="/">
             <img
-              src="/gama-logo.png"
+              src="/logos/gama-logo.png"
               alt="GAMA Logo"
               className={`transition-all duration-500 ${scrolled ? 'h-8 md:h-12' : 'h-11 md:h-18'
                 } w-auto`}

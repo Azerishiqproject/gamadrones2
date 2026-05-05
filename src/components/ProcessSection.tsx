@@ -3,15 +3,15 @@ import Image from 'next/image';
 export default function ProcessSection() {
   const steps = [
     {
-      image: '/icon/icon1.png',
+      image: '/icons/icon1.png',
       description: 'The delivery team leaves the package at the on-site Gama Hub.',
     },
     {
-      image: '/icon/icon2.png',
+      image: '/icons/icon2.png',
       description: 'eX3 takes over, flying it directly to the customer.',
     },
     {
-      image: '/icon/icon3.png',
+      image: '/icons/icon3.png',
       description: "It's lowered gently to the doorstep; ready to pick up.",
     },
   ];
