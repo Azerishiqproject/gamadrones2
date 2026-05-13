@@ -5,14 +5,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 const revealUp = {
-  initial: { opacity: 0, y: 28 },
+  initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, amount: 0.2 },
   transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] as const },
 };
 
 const revealSoft = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, amount: 0.25 },
   transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] as const },
@@ -48,7 +48,7 @@ export default function BrandPositioningContent() {
 
             <motion.div
               {...revealSoft}
-              transition={{ ...revealSoft.transition, delay: 0.08 }}
+              transition={{ ...revealSoft.transition, delay: 0.2 }}
               className="flex h-24 w-40 items-center justify-end text-right md:h-32 md:w-52 lg:h-40 lg:w-64"
             >
               <div className="text-[0.9rem] font-medium text-white/90 md:text-[1.1rem] lg:text-[1.4rem]">
@@ -60,6 +60,7 @@ export default function BrandPositioningContent() {
           <div className="absolute inset-x-0 bottom-0 z-10 p-8 md:p-10 lg:p-14">
             <motion.h1
               {...revealUp}
+              transition={{ ...revealUp.transition, delay: 0.1 }}
               className="max-w-4xl text-[3rem] font-black leading-[0.9] tracking-[-0.04em] text-white md:text-[5rem] lg:text-[6.5rem]"
             >
               Brand Positioning
@@ -69,9 +70,9 @@ export default function BrandPositioningContent() {
 
         <motion.section {...revealUp} className="px-8 py-12 md:px-10 md:py-16 lg:px-14 lg:py-20">
           <div className="relative flex flex-col gap-12 md:min-h-[120px] md:flex-row md:items-start md:justify-between lg:min-h-[150px]">
-            <h1 className="text-[1.3rem] font-black uppercase tracking-tight md:text-[1.5rem]">
+            <motion.h1 {...revealSoft} className="text-[1.3rem] font-black uppercase tracking-tight md:text-[1.5rem]">
               Content
-            </h1>
+            </motion.h1>
 
             <div className="flex flex-col gap-2 text-center md:absolute md:left-1/2 md:-translate-x-1/2 md:text-left">
               {[
@@ -84,7 +85,7 @@ export default function BrandPositioningContent() {
                 <motion.div
                   key={item}
                   {...revealSoft}
-                  transition={{ ...revealSoft.transition, delay: index * 0.04 }}
+                  transition={{ ...revealSoft.transition, delay: index * 0.12 }}
                   className="text-[1.1rem] font-medium md:text-[1.3rem]"
                 >
                   {item}
@@ -97,7 +98,7 @@ export default function BrandPositioningContent() {
 
           <motion.div
             {...revealUp}
-            transition={{ ...revealUp.transition, delay: 0.06 }}
+            transition={{ ...revealUp.transition, delay: 0.15 }}
             className="mt-20 flex justify-center text-center md:mt-24 lg:mt-32"
           >
             <h2 className="max-w-[1200px] text-[1.3rem] font-extralight leading-[1.2] tracking-tight md:text-[2.4rem] lg:text-[3.5rem]">
@@ -111,22 +112,26 @@ export default function BrandPositioningContent() {
 
         <motion.section {...revealUp} className="px-8 pb-12 md:px-10 md:pb-16 lg:px-14 lg:pb-20">
           <div className="mx-auto max-w-[1400px] space-y-8 md:space-y-12 lg:space-y-16">
-            <motion.div {...revealUp} className="group relative h-[180px] w-full overflow-hidden rounded-[2rem] md:h-[300px] lg:h-[350px]">
+            <motion.div
+              {...revealUp}
+              transition={{ ...revealUp.transition, delay: 0.1 }}
+              className="group relative h-[180px] w-full overflow-hidden rounded-[2rem] md:h-[300px] lg:h-[350px]"
+            >
               <Image
                 src="/brand/positioning_1.png"
                 alt="Our Mission"
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-black/5" />
+              <div className="absolute inset-0 bg-black/5 transition-colors duration-500 group-hover:bg-black/40" />
 
-              <div className="absolute left-8 top-8 z-10 md:left-12 md:top-12">
+              <div className="absolute left-8 top-8 z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:left-12 md:top-12">
                 <span className="text-[1.1rem] font-black uppercase tracking-tight text-white md:text-[1.4rem]">
                   Our Mission
                 </span>
               </div>
 
-              <div className="absolute inset-0 z-10 flex items-center justify-center px-6 text-center">
+              <div className="absolute inset-0 z-20 flex items-center justify-center px-6 text-center opacity-0 transition-all duration-700 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0">
                 <p className="max-w-5xl text-[1.1rem] font-medium leading-[1.3] text-white md:text-[1.8rem] lg:text-[2.2rem]">
                   Bridging the skies and sustainable engineering through cutting-edge technology.
                 </p>
@@ -137,24 +142,24 @@ export default function BrandPositioningContent() {
 
             <motion.div
               {...revealUp}
-              transition={{ ...revealUp.transition, delay: 0.06 }}
+              transition={{ ...revealUp.transition, delay: 0.25 }}
               className="group relative h-[180px] w-full overflow-hidden rounded-[2rem] md:h-[300px] lg:h-[350px]"
             >
               <Image
                 src="/brand/positioning_2.png"
                 alt="Our Vision"
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-black/5" />
+              <div className="absolute inset-0 bg-black/5 transition-colors duration-500 group-hover:bg-black/40" />
 
-              <div className="absolute left-8 top-8 z-10 md:left-12 md:top-12">
+              <div className="absolute left-8 top-8 z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:left-12 md:top-12">
                 <span className="text-[1.1rem] font-black uppercase tracking-tight text-white md:text-[1.4rem]">
                   Our Vision
                 </span>
               </div>
 
-              <div className="absolute inset-0 z-10 flex items-center justify-center px-6 text-center">
+              <div className="absolute inset-0 z-20 flex items-center justify-center px-6 text-center opacity-0 transition-all duration-700 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0">
                 <p className="max-w-6xl text-[1.1rem] font-medium leading-[1.3] text-white md:text-[1.8rem] lg:text-[2.2rem]">
                   Redefining aviation through innovative technologies to explore the skies in a human-centric, secure,
                   swift, and agile way.
@@ -168,12 +173,12 @@ export default function BrandPositioningContent() {
 
         <motion.section {...revealUp} className="px-8 pb-12 pt-4 md:px-10 md:pb-16 md:pt-6 lg:px-14 lg:pb-20 lg:pt-8">
           <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
-            <h2 className="text-[1.3rem] font-black uppercase tracking-tight md:text-[1.5rem]">Our Belief</h2>
+            <motion.h2 {...revealSoft} className="text-[1.3rem] font-black uppercase tracking-tight md:text-[1.5rem]">Our Belief</motion.h2>
           </div>
 
           <motion.div
             {...revealUp}
-            transition={{ ...revealUp.transition, delay: 0.04 }}
+            transition={{ ...revealUp.transition, delay: 0.1 }}
             className="mt-12 flex justify-center text-center md:mt-16 lg:mt-20"
           >
             <p className="max-w-[1200px] text-[1.5rem] font-medium leading-[1.2] tracking-tight md:text-[3rem] lg:text-[4rem]">
@@ -187,7 +192,7 @@ export default function BrandPositioningContent() {
         <motion.section {...revealUp} className="px-8 py-4 md:px-10 md:py-8 lg:px-14 lg:py-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-3">
-              <h2 className="text-[1.3rem] font-black uppercase tracking-tight md:text-[1.5rem]">Our Values</h2>
+              <motion.h2 {...revealSoft} className="text-[1.3rem] font-black uppercase tracking-tight md:text-[1.5rem]">Our Values</motion.h2>
             </div>
 
             <div className="space-y-12 md:space-y-16 lg:col-span-9 lg:pt-16">
@@ -212,7 +217,7 @@ export default function BrandPositioningContent() {
                 <motion.div
                   key={value.title}
                   {...revealUp}
-                  transition={{ ...revealUp.transition, delay: index * 0.04 }}
+                  transition={{ ...revealUp.transition, delay: index * 0.15 }}
                   className="space-y-3"
                 >
                   <h3 className="text-[2rem] font-extrabold tracking-tight md:text-[2.6rem] lg:text-[3rem]">
@@ -230,9 +235,9 @@ export default function BrandPositioningContent() {
         <motion.section {...revealUp} className="px-8 py-14 md:px-10 md:py-18 lg:px-14 lg:py-20">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-3">
-              <h2 className="text-[1.3rem] font-black uppercase tracking-tight md:text-[1.5rem]">
+              <motion.h2 {...revealSoft} className="text-[1.3rem] font-black uppercase tracking-tight md:text-[1.5rem]">
                 Our Philosophy
-              </h2>
+              </motion.h2>
             </div>
 
             <div className="mt-20 space-y-12 md:mt-24 md:space-y-16 lg:col-span-9 lg:mt-28 lg:space-y-18">
@@ -254,7 +259,7 @@ export default function BrandPositioningContent() {
                   <motion.div
                     key={item.title}
                     {...revealUp}
-                    transition={{ ...revealUp.transition, delay: index * 0.05 }}
+                    transition={{ ...revealUp.transition, delay: index * 0.2 }}
                     className="flex flex-col gap-6 md:grid md:grid-cols-[430px_20px_320px] md:items-center md:gap-x-10 lg:grid-cols-[470px_20px_340px] lg:gap-x-12"
                   >
                     <div>

@@ -15,14 +15,14 @@ const sections = [
 ];
 
 const revealUp = {
-  initial: { opacity: 0, y: 28 },
+  initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, amount: 0.2 },
   transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] as const },
 };
 
 const revealSoft = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, amount: 0.25 },
   transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] as const },
@@ -58,6 +58,7 @@ export default function BrandPageContent() {
           <div className="absolute inset-x-0 bottom-0 z-10 px-8 pb-8 md:px-10 md:pb-10 lg:px-14 lg:pb-14">
             <motion.h1
               {...revealUp}
+              transition={{ ...revealUp.transition, delay: 0.1 }}
               className="max-w-4xl text-[1.8rem] font-black leading-[0.95] tracking-[-0.04em] text-white md:text-[3.4rem] lg:text-[4.6rem]"
             >
               Brand Guidelines
@@ -94,7 +95,7 @@ export default function BrandPageContent() {
                 <motion.div
                   key={section.name}
                   {...revealUp}
-                  transition={{ ...revealUp.transition, delay: index * 0.05 }}
+                  transition={{ ...revealUp.transition, delay: index * 0.12 }}
                 >
                   <Link
                     href={section.path}
@@ -109,10 +110,10 @@ export default function BrandPageContent() {
 
           <motion.div
             {...revealSoft}
-            transition={{ ...revealSoft.transition, delay: 0.08 }}
+            transition={{ ...revealSoft.transition, delay: 0.15 }}
             className="mt-16 border-t border-black/70 pt-5 text-right md:mt-20 md:pt-6"
           >
-            <div className="text-[0.95rem] font-black uppercase tracking-[-0.02em] md:text-[1.15rem]">Next</div>
+            <motion.div {...revealSoft} className="text-[0.95rem] font-black uppercase tracking-[-0.02em] md:text-[1.15rem]">Next</motion.div>
             <Link
               href="/brand/brand-positioning"
               className="mt-10 inline-block text-[1.4rem] font-black leading-[0.98] tracking-[-0.05em] transition-all duration-200 hover:-translate-x-1 hover:opacity-65 md:mt-12 md:text-[2.4rem] lg:text-[3rem]"
