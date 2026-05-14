@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 
 const revealUp = {
   initial: { opacity: 0, y: 40 },
@@ -17,6 +18,48 @@ const revealSoft = {
   viewport: { once: true, amount: 0.25 },
   transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] as const },
 };
+
+const introStatement =
+  "We focus on building the future, improving everyday life, and redefining the possibilities of aerial technology. To us, the sky has always been beautiful.";
+
+function TypewriterText({ text }: { text: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.6 });
+  const shouldReduceMotion = useReducedMotion();
+  const [visibleCount, setVisibleCount] = useState(0);
+  const displayedCount = shouldReduceMotion ? text.length : visibleCount;
+
+  useEffect(() => {
+    if (!isInView || shouldReduceMotion) return;
+
+    const interval = window.setInterval(() => {
+      setVisibleCount((count) => {
+        if (count >= text.length) {
+          window.clearInterval(interval);
+          return count;
+        }
+
+        return count + 1;
+      });
+    }, 28);
+
+    return () => window.clearInterval(interval);
+  }, [isInView, shouldReduceMotion, text]);
+
+  return (
+    <span ref={ref} className="block" aria-label={text}>
+      {Array.from(text).map((character, index) => (
+        <span
+          key={`${character}-${index}`}
+          className={index < displayedCount ? "opacity-100" : "opacity-0"}
+          aria-hidden="true"
+        >
+          {character}
+        </span>
+      ))}
+    </span>
+  );
+}
 
 export default function BrandPositioningContent() {
   return (
@@ -102,8 +145,7 @@ export default function BrandPositioningContent() {
             className="mt-20 flex justify-center text-center md:mt-24 lg:mt-32"
           >
             <h2 className="max-w-[1200px] text-[1.3rem] font-extralight leading-[1.2] tracking-tight md:text-[2.4rem] lg:text-[3.5rem]">
-              We focus on building the future, improving everyday life, and redefining the possibilities of aerial
-              technology. To us, the sky has always been beautiful.
+              <TypewriterText text={introStatement} />
             </h2>
           </motion.div>
 
@@ -304,10 +346,10 @@ export default function BrandPositioningContent() {
                 Next
               </p>
               <Link
-                href="/brand/logo"
+                href="/brand/typography"
                 className="mt-14 block text-[1.7rem] font-black leading-[0.92] tracking-[-0.07em] hover:opacity-60 md:mt-16 md:text-[2.7rem] lg:mt-18 lg:text-[3.8rem]"
               >
-                Logo
+                Typography
               </Link>
             </motion.div>
           </div>
