@@ -344,11 +344,12 @@ export default function TypographyContent() {
           <motion.div
             {...revealSoft}
             transition={{ ...revealSoft.transition, delay: 0.26 }}
-            className="absolute bottom-[-32px] left-[45%] hidden text-[12rem] font-black leading-none text-[#0874df] [text-shadow:-7px_0_0_#050505,0_-7px_0_#050505,7px_0_0_#050505,0_7px_0_#050505] md:block lg:text-[15rem] max-md:bottom-[-14px] max-md:left-[54%] max-md:block max-md:text-[5.6rem] max-md:[text-shadow:-4px_0_0_#050505,0_-4px_0_#050505,4px_0_0_#050505,0_4px_0_#050505] 2xl:text-[20rem]"
+            className="absolute bottom-[-82px] left-[45%] hidden text-[12rem] font-black leading-none text-[#0874df] [text-shadow:-7px_0_0_#050505,0_-7px_0_#050505,7px_0_0_#050505,0_7px_0_#050505] md:block lg:bottom-[-104px] lg:text-[15rem] max-md:bottom-[-38px] max-md:left-[54%] max-md:block max-md:text-[5.6rem] max-md:[text-shadow:-4px_0_0_#050505,0_-4px_0_#050505,4px_0_0_#050505,0_4px_0_#050505] 2xl:bottom-[-140px] 2xl:text-[20rem]"
             aria-hidden="true"
           >
             G
           </motion.div>
+
         </section>
 
         <motion.section
@@ -483,37 +484,40 @@ export default function TypographyContent() {
               transition={{ ...revealUp.transition, delay: 0.12 }}
               className="mt-20 border border-black px-6 py-8 md:mt-28 md:px-10 md:py-12 lg:mt-36 lg:px-14 lg:py-16"
             >
-              <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_420px] lg:gap-14">
-                <div>
-                  <h3 className="text-5xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl lg:text-[7rem]">
-                    The Sky
-                  </h3>
-                  <p className="mt-9 text-2xl font-normal leading-[1.08] tracking-normal md:text-4xl lg:text-5xl">
-                    The sky is free for all of us
-                  </p>
-                  <div className="mt-8 max-w-[720px] space-y-6 text-base font-medium leading-[1.08] tracking-normal md:text-xl lg:text-2xl">
-                    <p>
-                      The sky, adorned with the lightest shades of blue by day and the shimmer of stars by night, cannot
-                      be restricted by any earthly boundaries. This infinite void, which anyone can see just by lifting
-                      their head, is the purest symbol of justice and freedom.
-                    </p>
-                    <p>
-                      Sunlight filtering through the clouds reaches every corner of the world with the same warmth.
-                      Regardless of being rich or poor, this magnificent spectacle of nature begins anew for each of us
-                      every single day.
-                    </p>
-                    <p>
-                      Under this vast ceiling, we all breathe the same air and gaze at the same horizon. The sky reminds
-                      us every moment, despite all our differences, of just how large and common a whole we are a part
-                      of, Gama Drones.
-                    </p>
-                  </div>
+              <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_420px] lg:gap-x-14 lg:gap-y-8">
+                <h3 className="text-5xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl lg:text-[7rem]">
+                  The Sky
+                </h3>
+                <div className="hidden lg:block">
+                  <MeasurementGuide label="Header or Main Title" className="h-full min-h-[112px]" />
                 </div>
 
-                <div className="hidden lg:grid lg:grid-rows-[170px_100px_1fr]">
-                  <MeasurementGuide label="Header or Main Title" />
-                  <MeasurementGuide label="Sub-header" />
-                  <MeasurementGuide label="Body copy" />
+                <p className="mt-9 text-2xl font-normal leading-[1.08] tracking-normal md:text-4xl lg:mt-0 lg:text-5xl">
+                  The sky is free for all of us
+                </p>
+                <div className="hidden lg:block">
+                  <MeasurementGuide label="Sub-header" className="h-full min-h-[58px]" />
+                </div>
+
+                <div className="mt-8 max-w-[720px] space-y-6 text-base font-medium leading-[1.08] tracking-normal md:text-xl lg:mt-0 lg:text-2xl">
+                  <p>
+                    The sky, adorned with the lightest shades of blue by day and the shimmer of stars by night, cannot
+                    be restricted by any earthly boundaries. This infinite void, which anyone can see just by lifting
+                    their head, is the purest symbol of justice and freedom.
+                  </p>
+                  <p>
+                    Sunlight filtering through the clouds reaches every corner of the world with the same warmth.
+                    Regardless of being rich or poor, this magnificent spectacle of nature begins anew for each of us
+                    every single day.
+                  </p>
+                  <p>
+                    Under this vast ceiling, we all breathe the same air and gaze at the same horizon. The sky reminds
+                    us every moment, despite all our differences, of just how large and common a whole we are a part of,
+                    Gama Drones.
+                  </p>
+                </div>
+                <div className="hidden lg:block">
+                  <MeasurementGuide label="Body copy" className="h-full min-h-[360px]" />
                 </div>
               </div>
             </motion.div>
