@@ -6,12 +6,12 @@ import { motion } from "framer-motion";
 
 const sections = [
   { name: "Brand Positioning", path: "/brand/brand-positioning" },
-  { name: "Logo", path: "#logo" },
-  { name: "Color", path: "#color" },
+  { name: "Logo", path: "/brand/logo" },
+  { name: "Color", path: "/brand/color" },
   { name: "Typography", path: "/brand/typography" },
-  { name: "Voice & Tone", path: "#voice-tone" },
-  { name: "Motion", path: "#motion" },
-  { name: "In-house Materials", path: "#in-house-materials" },
+  { name: "Voice & Tone", path: "/brand/voice-tone" },
+  { name: "Motion", path: "/brand/motion" },
+  { name: "In-house Materials", path: "/brand/in-house-materials" },
 ];
 
 const revealUp = {

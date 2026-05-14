@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 
 const revealUp = {
   initial: { opacity: 0, y: 40 },
@@ -21,6 +21,29 @@ const revealSoft = {
 
 const introStatement =
   "We focus on building the future, improving everyday life, and redefining the possibilities of aerial technology. To us, the sky has always been beautiful.";
+
+const brandValues = [
+  {
+    label: "sustainable energy",
+    title: "Sustainable Energy",
+    desc: "We respect nature and protect it for the future, building technology that moves with responsibility.",
+  },
+  {
+    label: "uncompromising safety",
+    title: "Uncompromising Safety",
+    desc: "Safety is our highest standard. Every system, decision, and detail must earn trust before it takes flight.",
+  },
+  {
+    label: "rethinking engineering",
+    title: "Rethinking Engineering",
+    desc: "Engineering is our challenge. We question assumptions, rebuild from first principles, and design for better skies.",
+  },
+  {
+    label: "continuous technology",
+    title: "Continuous Technology",
+    desc: "We keep improving according to real needs, turning progress into a habit rather than a milestone.",
+  },
+];
 
 function TypewriterText({ text }: { text: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -62,6 +85,9 @@ function TypewriterText({ text }: { text: string }) {
 }
 
 export default function BrandPositioningContent() {
+  const [activeValueIndex, setActiveValueIndex] = useState(0);
+  const activeValue = brandValues[activeValueIndex];
+
   return (
     <main id="top" className="bg-[#e9eaef] text-black">
       <div className="mx-auto min-h-screen max-w-[1728px]">
@@ -232,42 +258,83 @@ export default function BrandPositioningContent() {
         </motion.section>
 
         <motion.section {...revealUp} className="px-8 py-4 md:px-10 md:py-8 lg:px-14 lg:py-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-12">
-            <div className="lg:col-span-3">
+          <div className="grid grid-cols-1 gap-12">
+            <div>
               <motion.h2 {...revealSoft} className="text-[1.3rem] font-black uppercase tracking-tight md:text-[1.5rem]">Our Values</motion.h2>
             </div>
 
-            <div className="space-y-12 md:space-y-16 lg:col-span-9 lg:pt-16">
-              {[
-                {
-                  title: "Sustainable Energy",
-                  desc: "We respect nature and protect it for the future.",
-                },
-                {
-                  title: "Safety",
-                  desc: "Safety is our highest standard..",
-                },
-                {
-                  title: "Rethinking Engineering",
-                  desc: "Engineering is our challenge.",
-                },
-                {
-                  title: "Continuous Technology",
-                  desc: "We continue according to your needs.",
-                },
-              ].map((value, index) => (
-                <motion.div
-                  key={value.title}
-                  {...revealUp}
-                  transition={{ ...revealUp.transition, delay: index * 0.15 }}
-                  className="space-y-3"
+            <div className="grid gap-10 md:pl-[5%] lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.75fr)] lg:items-start lg:gap-20 lg:pl-[5%]">
+              <motion.div
+                {...revealUp}
+                transition={{ ...revealUp.transition, delay: 0.1 }}
+                className="max-w-[780px] text-[1.75rem] font-normal leading-[1.18] tracking-tight md:text-[2.4rem] lg:text-[2.75rem]"
+              >
+                Our foundational values are{" "}
+                <button
+                  type="button"
+                  onClick={() => setActiveValueIndex(0)}
+                  className={`inline text-left transition-colors duration-500 hover:text-[#ff4a0a] ${
+                    activeValueIndex === 0 ? "text-[#ff4a0a]" : "text-black"
+                  }`}
                 >
-                  <h3 className="text-[2rem] font-extrabold tracking-tight md:text-[2.6rem] lg:text-[3rem]">
-                    {value.title}
-                  </h3>
-                  <p className="max-w-xl text-[1.3rem] font-medium opacity-80 md:text-[1.6rem]">{value.desc}</p>
-                </motion.div>
-              ))}
+                  {brandValues[0].label}
+                  <sup className="ml-1 text-[0.45em] leading-none">1</sup>
+                </button>
+                ,{" "}
+                <button
+                  type="button"
+                  onClick={() => setActiveValueIndex(1)}
+                  className={`inline text-left transition-colors duration-500 hover:text-[#ff4a0a] ${
+                    activeValueIndex === 1 ? "text-[#ff4a0a]" : "text-black"
+                  }`}
+                >
+                  {brandValues[1].label}
+                  <sup className="ml-1 text-[0.45em] leading-none">2</sup>
+                </button>
+                ,{" "}
+                <button
+                  type="button"
+                  onClick={() => setActiveValueIndex(2)}
+                  className={`inline text-left transition-colors duration-500 hover:text-[#ff4a0a] ${
+                    activeValueIndex === 2 ? "text-[#ff4a0a]" : "text-black"
+                  }`}
+                >
+                  {brandValues[2].label}
+                  <sup className="ml-1 text-[0.45em] leading-none">3</sup>
+                </button>{" "}
+                &amp;{" "}
+                <button
+                  type="button"
+                  onClick={() => setActiveValueIndex(3)}
+                  className={`inline text-left transition-colors duration-500 hover:text-[#ff4a0a] ${
+                    activeValueIndex === 3 ? "text-[#ff4a0a]" : "text-black"
+                  }`}
+                >
+                  {brandValues[3].label}
+                  <sup className="ml-1 text-[0.45em] leading-none">4</sup>
+                </button>
+              </motion.div>
+
+              <motion.div
+                {...revealSoft}
+                transition={{ ...revealSoft.transition, delay: 0.18 }}
+                className="relative min-h-[320px] overflow-hidden bg-[#a98fd1] p-6 md:min-h-[380px] md:p-8 lg:mt-32 lg:min-h-[380px] lg:max-w-[420px] lg:p-8"
+              >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeValue.title}
+                    initial={{ opacity: 0, y: -42, rotateX: -8 }}
+                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                    exit={{ opacity: 0, y: 28, rotateX: 6 }}
+                    transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                    className="origin-top bg-[#0874df] p-6 text-white shadow-[0_18px_0_rgba(0,0,0,0.12)] md:p-8"
+                  >
+                    <p className="text-[1rem] font-medium leading-[1.16] tracking-tight text-white/90 md:text-[1.2rem] lg:text-[1.35rem]">
+                      {activeValue.desc}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </motion.div>
             </div>
           </div>
 
