@@ -52,7 +52,7 @@ const brandTypefaces = [
     width: "Regular",
     specimenClass: "font-normal leading-[1.02] tracking-normal",
     nameClass: "text-4xl md:text-6xl lg:text-7xl",
-    sampleClass: "text-xl md:text-3xl lg:text-4xl",
+    sampleClass: "text-lg md:text-3xl lg:text-4xl",
   },
   {
     label: "Auxiliary\nFont (2)",
@@ -63,7 +63,7 @@ const brandTypefaces = [
     width: "Regular",
     specimenClass: "font-medium leading-[1.02] tracking-normal",
     nameClass: "text-4xl md:text-6xl lg:text-7xl",
-    sampleClass: "text-xl md:text-3xl lg:text-4xl",
+    sampleClass: "text-lg md:text-3xl lg:text-4xl",
   },
 ];
 
@@ -76,7 +76,7 @@ const workspaceSubstitutes = [
     weight: "900 (Black)",
     specimenClass: "font-black leading-[0.9] tracking-tight",
     nameClass: "text-4xl md:text-6xl lg:text-7xl",
-    sampleClass: "text-2xl md:text-3xl lg:text-4xl",
+    sampleClass: "text-lg md:text-3xl lg:text-4xl",
   },
   {
     eyebrow: "Heading 2 (Secondary)",
@@ -86,7 +86,7 @@ const workspaceSubstitutes = [
     weight: "400 (Regular)",
     specimenClass: "font-normal leading-[1.02] tracking-normal",
     nameClass: "text-5xl md:text-6xl lg:text-7xl",
-    sampleClass: "text-2xl md:text-3xl lg:text-4xl",
+    sampleClass: "text-lg md:text-3xl lg:text-4xl",
   },
   {
     eyebrow: "Heading 3 (Tertiary) & Smaller Copy",
@@ -96,7 +96,7 @@ const workspaceSubstitutes = [
     weight: "400 (Regular)",
     specimenClass: "font-normal leading-[1.02] tracking-normal",
     nameClass: "text-5xl md:text-6xl lg:text-7xl",
-    sampleClass: "text-2xl md:text-3xl lg:text-4xl",
+    sampleClass: "text-lg md:text-3xl lg:text-4xl",
   },
 ];
 
@@ -275,14 +275,14 @@ export default function TypographyContent() {
 
           <motion.div
             {...revealSoft}
-            className="absolute left-[10%] top-[15%] h-20 w-28 md:h-28 md:w-40 lg:h-36 lg:w-52 max-md:left-[17%] max-md:top-[12%] max-md:h-16 max-md:w-24 2xl:h-44 2xl:w-64"
+            className="absolute left-[4.5%] top-[8%] h-24 w-40 md:h-32 md:w-52 lg:h-40 lg:w-64 max-md:left-[17%] max-md:top-[10%] max-md:h-20 max-md:w-32 2xl:h-48 2xl:w-72"
           >
             <Image
               src="/logos/gama-logo.png"
               alt="GAMA"
               fill
               priority
-              sizes="(max-width: 768px) 96px, (min-width: 1536px) 256px, 208px"
+              sizes="(max-width: 768px) 128px, (min-width: 1536px) 288px, 256px"
               className="object-contain brightness-0 invert"
             />
           </motion.div>
@@ -306,7 +306,7 @@ export default function TypographyContent() {
           <motion.h1
             {...revealUp}
             transition={{ ...revealUp.transition, delay: 0.14 }}
-            className="absolute bottom-[35%] left-[6.5%] text-4xl font-black leading-none tracking-normal md:text-6xl lg:text-7xl max-md:bottom-[39.4%] max-md:left-[10%] max-md:text-[1.85rem] 2xl:text-8xl"
+            className="absolute bottom-[33%] left-[6.5%] text-4xl font-black leading-none tracking-normal md:text-6xl lg:text-7xl max-md:bottom-[39.4%] max-md:left-[10%] max-md:text-[1.85rem] 2xl:text-8xl"
           >
             Typography
           </motion.h1>
@@ -379,9 +379,9 @@ export default function TypographyContent() {
           <motion.div
             {...revealUp}
             transition={{ ...revealUp.transition, delay: 0.12 }}
-            className="mt-4 flex justify-center text-center md:mt-8 lg:mt-12"
+            className="mt-4 flex justify-center text-center md:mt-8 lg:mt-4"
           >
-            <h2 className="max-w-[1200px] text-[1.3rem] font-extralight leading-[1.2] tracking-tight md:text-[2.4rem] lg:text-[3.5rem]">
+            <h2 className="max-w-[1200px] text-[1.3rem] pt-10 font-extralight leading-[1.2] tracking-tight md:text-[2.4rem] lg:text-[3.5rem]">
               <TypewriterText text={introStatement} />
             </h2>
           </motion.div>
@@ -391,7 +391,7 @@ export default function TypographyContent() {
 
         <motion.section
           {...revealUp}
-          className="px-8 pb-10 pt-5 md:px-10 md:pb-14 md:pt-3 lg:px-14 lg:pb-16 lg:pt-3"
+          className="px-8 pb-2 pt-5 md:px-10 md:pb-3 md:pt-3 lg:px-14 lg:pb-4 lg:pt-3"
         >
           <div className="mx-auto max-w-[1600px]">
             <motion.h2
