@@ -45,15 +45,36 @@ const brandValues = [
   },
 ];
 
-function TypewriterText({ text }: { text: string }) {
+function TypewriterText({
+  text,
+  animateOnView = true,
+  restartKey,
+  speed = 28,
+}: {
+  text: string;
+  animateOnView?: boolean;
+  restartKey?: string | number;
+  speed?: number;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.6 });
   const shouldReduceMotion = useReducedMotion();
   const [visibleCount, setVisibleCount] = useState(0);
+  const shouldAnimate = animateOnView ? isInView : true;
   const displayedCount = shouldReduceMotion ? text.length : visibleCount;
 
   useEffect(() => {
-    if (!isInView || shouldReduceMotion) return;
+    if (shouldReduceMotion) {
+      setVisibleCount(text.length);
+      return;
+    }
+
+    if (!shouldAnimate) {
+      setVisibleCount(0);
+      return;
+    }
+
+    setVisibleCount(0);
 
     const interval = window.setInterval(() => {
       setVisibleCount((count) => {
@@ -64,10 +85,10 @@ function TypewriterText({ text }: { text: string }) {
 
         return count + 1;
       });
-    }, 28);
+    }, speed);
 
     return () => window.clearInterval(interval);
-  }, [isInView, shouldReduceMotion, text]);
+  }, [restartKey, shouldAnimate, shouldReduceMotion, speed, text]);
 
   return (
     <span ref={ref} className="block" aria-label={text}>
@@ -318,20 +339,33 @@ export default function BrandPositioningContent() {
               <motion.div
                 {...revealSoft}
                 transition={{ ...revealSoft.transition, delay: 0.18 }}
-                className="relative min-h-[320px] overflow-hidden bg-[#a98fd1] p-6 md:min-h-[380px] md:p-8 lg:mt-32 lg:min-h-[380px] lg:max-w-[420px] lg:p-8"
+                className="relative lg:max-w-[460px]"
               >
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeValue.title}
-                    initial={{ opacity: 0, y: -42, rotateX: -8 }}
-                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                    exit={{ opacity: 0, y: 28, rotateX: 6 }}
+                    initial={{ opacity: 0, y: 28 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -18 }}
                     transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                    className="origin-top bg-[#0874df] p-6 text-white shadow-[0_18px_0_rgba(0,0,0,0.12)] md:p-8"
+                    className="grid grid-cols-[18px_minmax(0,1fr)] gap-5 md:gap-6"
                   >
-                    <p className="text-[1rem] font-medium leading-[1.16] tracking-tight text-white/90 md:text-[1.2rem] lg:text-[1.35rem]">
-                      {activeValue.desc}
-                    </p>
+                    <div className="flex justify-center">
+                      <span className="mt-1 block h-full min-h-[128px] w-px bg-black/90 md:min-h-[142px]" />
+                    </div>
+                    <div className="space-y-3">
+                      <p className="text-[0.82rem] font-black uppercase tracking-[0.2em] text-black/45 md:text-[0.88rem]">
+                        {activeValue.title}
+                      </p>
+                      <p className="max-w-[24ch] text-[1.2rem] font-medium leading-[1.02] tracking-[-0.04em] text-black md:text-[1.55rem] lg:text-[1.8rem]">
+                        <TypewriterText
+                          text={activeValue.desc}
+                          animateOnView={false}
+                          restartKey={activeValue.title}
+                          speed={16}
+                        />
+                      </p>
+                    </div>
                   </motion.div>
                 </AnimatePresence>
               </motion.div>
