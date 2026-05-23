@@ -35,7 +35,7 @@ export default function BrandPageContent() {
         <section className="relative min-h-[400px] overflow-hidden md:min-h-[500px] lg:min-h-[650px]">
           <Image
             src="/brand/hero_bg_brand_new.png"
-            alt="GAMA Drones brand hero"
+            alt="Gama Drones brand hero"
             fill
             priority
             sizes="100vw"

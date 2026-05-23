@@ -1,8 +1,8 @@
 import BrandComingSoonContent from "../BrandComingSoonContent";
 
 export const metadata = {
-  title: "In-house Materials | GAMA Drones",
-  description: "In-house material guidelines for GAMA Drones.",
+  title: "In-house Materials | Gama Drones",
+  description: "In-house material guidelines for Gama Drones.",
 };
 
 export default function InHouseMaterialsPage() {

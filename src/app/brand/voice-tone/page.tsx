@@ -1,8 +1,8 @@
 import BrandComingSoonContent from "../BrandComingSoonContent";
 
 export const metadata = {
-  title: "Voice & Tone | GAMA Drones",
-  description: "Voice and tone guidelines for GAMA Drones.",
+  title: "Voice & Tone | Gama Drones",
+  description: "Voice and tone guidelines for Gama Drones.",
 };
 
 export default function VoiceTonePage() {

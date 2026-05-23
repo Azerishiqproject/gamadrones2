@@ -1,8 +1,8 @@
 import BrandComingSoonContent from "../BrandComingSoonContent";
 
 export const metadata = {
-  title: "Logo | GAMA Drones",
-  description: "Logo guidelines for GAMA Drones.",
+  title: "Logo | Gama Drones",
+  description: "Logo guidelines for Gama Drones.",
 };
 
 export default function LogoPage() {

@@ -115,7 +115,7 @@ export default function BrandPositioningContent() {
         <section className="relative min-h-[500px] overflow-hidden md:min-h-[600px] lg:min-h-[800px]">
           <Image
             src="/brand/brand_positioning.png"
-            alt="GAMA Drones brand positioning hero"
+            alt="Gama Drones brand positioning hero"
             fill
             priority
             sizes="100vw"

@@ -1,8 +1,8 @@
 import BrandComingSoonContent from "../BrandComingSoonContent";
 
 export const metadata = {
-  title: "Motion | GAMA Drones",
-  description: "Motion guidelines for GAMA Drones.",
+  title: "Motion | Gama Drones",
+  description: "Motion guidelines for Gama Drones.",
 };
 
 export default function MotionPage() {

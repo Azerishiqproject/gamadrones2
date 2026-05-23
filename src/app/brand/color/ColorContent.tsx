@@ -1,11 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 
-const contentItems = ["Introduction", "Core Palette", "Extended Palette", "Titaniums"];
+const contentItems = [
+  { label: "Introduction", href: "#introduction" },
+  { label: "Core Palette", href: "#core-palette" },
+  { label: "Extended Palette", href: "#extended-palette" },
+  { label: "Titaniums", href: "#titaniums" },
+];
+
+const introHeading = "Where advanced engineering meets the horizon.";
+
+const introBody =
+  "Our color palette acts as the bridge between technology and humanity, carefully calibrated to reflect our structural elegance and core values.";
 
 const corePalette = [
   {
@@ -151,6 +161,45 @@ function GridLine({ className }: { className: string }) {
   return <div className={`pointer-events-none absolute bg-white/65 ${className}`} />;
 }
 
+function TypewriterText({ text }: { text: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.6 });
+  const shouldReduceMotion = useReducedMotion();
+  const [visibleCount, setVisibleCount] = useState(0);
+  const displayedCount = shouldReduceMotion ? text.length : visibleCount;
+
+  useEffect(() => {
+    if (!isInView || shouldReduceMotion) return;
+
+    const interval = window.setInterval(() => {
+      setVisibleCount((count) => {
+        if (count >= text.length) {
+          window.clearInterval(interval);
+          return count;
+        }
+
+        return count + 1;
+      });
+    }, 28);
+
+    return () => window.clearInterval(interval);
+  }, [isInView, shouldReduceMotion, text]);
+
+  return (
+    <span ref={ref} className="block" aria-label={text}>
+      {Array.from(text).map((character, index) => (
+        <span
+          key={`${character}-${index}`}
+          className={index < displayedCount ? "opacity-100" : "opacity-0"}
+          aria-hidden="true"
+        >
+          {character}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false);
 
@@ -216,7 +265,7 @@ function PaletteStack({
             >
               <div className="pointer-events-none absolute inset-0 rounded-t-[1.65rem] ring-1 ring-white/8" />
 
-              <h3 className="relative max-w-[10ch] text-[1.45rem] font-light leading-[0.92] tracking-normal md:text-[1.8rem] lg:text-[1.95rem]">
+              <h3 className="relative max-w-[10ch] text-[1.45rem] font-light leading-[0.92] tracking-normal opacity-80 md:text-[1.8rem] lg:text-[1.95rem]">
                 {item.name}
               </h3>
 
@@ -302,7 +351,7 @@ function TitaniumStack({ items }: { items: TitaniumItem[] }) {
             >
               <div className="pointer-events-none absolute inset-0 rounded-t-[1.65rem] ring-1 ring-white/8" />
 
-              <h3 className="relative text-[1.45rem] font-light leading-none tracking-normal md:text-[1.8rem] lg:text-[1.95rem]">
+              <h3 className="relative text-[1.45rem] font-light leading-none tracking-normal opacity-80 md:text-[1.8rem] lg:text-[1.95rem]">
                 {item.name}
               </h3>
 
@@ -420,8 +469,9 @@ export default function ColorContent() {
         </section>
 
         <motion.section
+          id="introduction"
           {...revealUp}
-          className="px-8 py-12 md:px-10 md:py-16 lg:px-14 lg:py-20"
+          className="scroll-mt-24 px-8 py-12 md:px-10 md:py-16 lg:px-14 lg:py-20"
         >
           <div className="relative flex flex-col gap-12 md:min-h-[180px] md:flex-row md:items-start md:justify-between lg:min-h-[220px]">
             <motion.h2
@@ -434,12 +484,14 @@ export default function ColorContent() {
             <div className="flex flex-col gap-2 text-left md:absolute md:left-[35%] md:top-0">
               {contentItems.map((item, index) => (
                 <motion.div
-                  key={item}
+                  key={item.href}
                   {...revealSoft}
                   transition={{ ...revealSoft.transition, delay: index * 0.08 }}
                   className="text-[1.1rem] font-medium leading-[1.2] tracking-normal md:text-[1.35rem] lg:text-[1.55rem]"
                 >
-                  {item}
+                  <a href={item.href} className="transition-opacity hover:opacity-60">
+                    {item.label}
+                  </a>
                 </motion.div>
               ))}
             </div>
@@ -469,24 +521,24 @@ export default function ColorContent() {
             className="mx-auto mt-12 max-w-[1180px] text-center md:mt-16 lg:mt-18"
           >
             <h2 className="text-[1.4rem] font-light leading-[1.08] tracking-[-0.04em] md:text-[2rem] lg:text-[3rem]">
-              Where advanced engineering meets the horizon.
+              <TypewriterText text={introHeading} />
             </h2>
             <p className="mx-auto mt-8 max-w-[980px] text-[1rem] font-light leading-[1.05] tracking-[-0.04em] md:text-[1.6rem] lg:mt-10 lg:text-[2.4rem]">
-              Our color palette acts as the bridge between technology and humanity, carefully calibrated to reflect our
-              structural elegance and core values.
+              <TypewriterText text={introBody} />
             </p>
           </motion.div>
         </motion.section>
 
         <motion.section
+          id="core-palette"
           {...revealUp}
-          className="px-8 pb-12 md:px-10 md:pb-16 lg:px-14 lg:pb-20"
+          className="scroll-mt-24 px-8 pb-12 md:px-10 md:pb-16 lg:px-14 lg:pb-20"
         >
           <motion.div
             {...revealSoft}
             className="border-t border-black/80 pt-5 md:pt-6"
           >
-            <h2 className="text-[1.3rem] font-black uppercase tracking-tight md:text-[1.5rem]">
+            <h2 className="text-[1.3rem] font-black uppercase tracking-tight text-black/65 md:text-[1.5rem] mb-[-10rem]">
               Core Palette
             </h2>
           </motion.div>
@@ -499,14 +551,15 @@ export default function ColorContent() {
         </motion.section>
 
         <motion.section
+          id="extended-palette"
           {...revealUp}
-          className="px-8 pb-12 md:px-10 md:pb-16 lg:px-14 lg:pb-20"
+          className="scroll-mt-24 px-8 pb-12 md:px-10 md:pb-16 lg:px-14 lg:pb-20"
         >
           <motion.div
             {...revealSoft}
             className="border-t border-black/80 pt-5 md:pt-6"
           >
-            <h2 className="text-[1.3rem] font-black uppercase tracking-tight md:text-[1.5rem]">
+            <h2 className="text-[1.3rem] font-black uppercase tracking-tight text-black/65 md:text-[1.5rem] mb-[-10rem]">
               Extended Palette
             </h2>
           </motion.div>
@@ -519,14 +572,15 @@ export default function ColorContent() {
         </motion.section>
 
         <motion.section
+          id="titaniums"
           {...revealUp}
-          className="px-8 pb-16 md:px-10 md:pb-20 lg:px-14 lg:pb-24"
+          className="scroll-mt-24 px-8 pb-16 md:px-10 md:pb-20 lg:px-14 lg:pb-24"
         >
           <motion.div
             {...revealSoft}
             className="border-t border-black/80 pt-5 md:pt-6"
           >
-            <h2 className="text-[1.3rem] font-black uppercase tracking-tight md:text-[1.5rem]">
+            <h2 className="text-[1.3rem] font-black uppercase tracking-tight text-black/65 md:text-[1.5rem]">
               Titaniums
             </h2>
           </motion.div>

@@ -116,7 +116,7 @@ export default function Footer({ onUnderDevelopment }: { onUnderDevelopment: () 
                 {/* Bottom Bar */}
                 <div className="pt-10 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
                     <div className="text-slate-400 text-xs">
-                        © {currentYear} GAMA Drones
+                        © {currentYear} Gama Drones
                     </div>
                     <div className="flex gap-8">
                         <button onClick={(e) => { e.preventDefault(); onUnderDevelopment(); }} className="text-xs text-slate-400 hover:text-slate-600 transition-colors">Privacy Policy</button>
