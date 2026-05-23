@@ -1,4 +1,4 @@
-import BrandComingSoonContent from "../BrandComingSoonContent";
+import ColorContent from "./ColorContent";
 
 export const metadata = {
   title: "Color | GAMA Drones",
@@ -6,5 +6,5 @@ export const metadata = {
 };
 
 export default function ColorPage() {
-  return <BrandComingSoonContent title="Color" />;
+  return <ColorContent />;
 }
